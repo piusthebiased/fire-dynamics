@@ -1,15 +1,30 @@
+import java.util.Arrays;
+
 public class Vector {
     private double magnitude;
-    private double direction; //radians, fuck you
+    private double[] direction; //radians, fuck you
 
-    public Vector(double magnitude, double direction) {
+    public Vector(int dim) {
+        this.magnitude = 0.0;
+        this.direction = new double[dim - 1];
+    }
+
+    public Vector(double magnitude, double... direction) {
         this.magnitude = magnitude;
         this.direction = direction;
     }
 
     //functional methods
-    public Pair coordinateRepresentation() {
-        return new Pair(Math.cos(direction) * magnitude, Math.sin(direction) * magnitude);
+    public Coordinate coordinateRepresentation() {
+        int dimensions = direction.length + 1;
+        double[] coords = new double[dimensions];
+
+        double planeMagnitude = magnitude * Math.cos(direction[1]);
+
+        coords[0] = planeMagnitude * Math.cos(direction[0]);
+        coords[1] = planeMagnitude * Math.sin(direction[0]);
+        coords[2] = planeMagnitude * Math.tan(direction[1]);
+        return new Coordinate(coords);
     }
 
     public Vector scale(double scalar) {
@@ -25,11 +40,11 @@ public class Vector {
         this.magnitude = magnitude;
     }
 
-    public double getDirection() {
+    public double[] getDirection() {
         return direction;
     }
 
-    public void setDirection(double direction) {
+    public void setDirection(double... direction) {
         this.direction = direction;
     }
 }

@@ -1,15 +1,16 @@
-public class Force {
-    private Vector f;
+import java.util.ArrayList;
+import java.util.Arrays;
 
-    public Force(double mass, Vector accel) {
-        this.f = accel.scale(mass);
+public class Force extends Vector{
+    public Force(double magnitude, double... direction) {
+        super(magnitude, direction);
     }
 
-    public Vector getForce() {
-        return f;
-    }
+    //static methods
+    public static Force[] toArray(ArrayList<Force> f) {
+        Force[] arr = new Force[f.size()];
+        f.toArray(arr);
 
-    public void setForce(Vector f) {
-        this.f = f;
+        return arr;
     }
 }
