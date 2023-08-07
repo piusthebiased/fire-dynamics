@@ -27,6 +27,21 @@ public class Vector {
         return new Coordinate(coords);
     }
 
+    public Vector add(Vector addend) {
+        Coordinate a = coordinateRepresentation();
+        Coordinate b = addend.coordinateRepresentation();
+
+        return (a.add(b)).vectorRepresentation();
+    }
+
+    public Vector add(Vector[] addend) {
+        Vector sum = new Vector(magnitude, direction);
+        for(Vector v : addend) {
+            sum = sum.add(v);
+        }
+        return sum;
+    }
+
     public Vector scale(double scalar) {
         return new Vector(this.magnitude*scalar, this.direction);
     }
@@ -46,5 +61,10 @@ public class Vector {
 
     public void setDirection(double... direction) {
         this.direction = direction;
+    }
+
+    // toString
+    public String toString() {
+        return "[Magnitude: " + magnitude + ", Direction: " + Arrays.toString(direction) + "]";
     }
 }
