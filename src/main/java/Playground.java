@@ -1,6 +1,10 @@
+import vector.Coordinate;
+import vector.Force;
+import vector.Vector;
+
 public class Playground {
     public static void main(String[] args) {
-        //first test
+        //first test, should print out [0, -1, 0]
         System.out.println("TEST ONE: ");
         Vector a = new Vector(1.0, 1.5 * Math.PI, 0.0);
         System.out.println(a);  // prints out vector form
@@ -9,7 +13,7 @@ public class Playground {
 
         //1.5 test
         System.out.println((new Coordinate(a.coordinateRepresentation().getCoords())).vectorRepresentation());
-        System.out.println(a.add(new Vector(1.0, 1.5 * Math.PI, 0.0)));
+        System.out.println(a.add(Vector.fromPolar(1.0, 1.5 * Math.PI, 0.0)));
 
 
         //second test
@@ -23,9 +27,5 @@ public class Playground {
 
         p.onTick();
         System.out.println("after state: \t" + p);
-
-
-
-
     }
 }

@@ -1,16 +1,19 @@
+import vector.Force;
+import vector.Vector;
+
 import java.util.ArrayList;
 
 public class Particle {
-    private Coordinate x;                   //position
+    private Vector x;                   //position
     private Vector v;                       //velocity
     private ArrayList<Force> forces = new ArrayList<>();   //queue of appliable forces
 
     public Particle() {
-        this.x = new Coordinate(3);
+        this.x = new Vector(3);
         this.v = new Vector(3);
     }
 
-    public Particle(Coordinate x, Vector v) {
+    public Particle(Vector x, Vector v) {
         this.x = x;
         this.v = v;
     }
@@ -23,7 +26,7 @@ public class Particle {
     //TODO: add tick as variable
     public void onTick() {
         v.add(Force.toArray(forces));
-        this.x = this.x.vectorRepresentation().add(this.v).coordinateRepresentation();
+        x.add(v);
         forces.clear();
     }
 
@@ -37,11 +40,11 @@ public class Particle {
     }
 
     //getters and setters
-    public Coordinate getX() {
+    public Vector getX() {
         return x;
     }
 
-    public void setX(Coordinate x) {
+    public void setX(Vector x) {
         this.x = x;
     }
 

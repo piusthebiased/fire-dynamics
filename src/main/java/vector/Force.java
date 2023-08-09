@@ -1,9 +1,10 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+package vector;
 
-public class Force extends Vector{
-    public Force(double magnitude, double... direction) {
-        super(magnitude, direction);
+import java.util.ArrayList;
+
+public class Force extends Vector {
+    public Force(int dim) {
+        super(dim);
     }
 
     //static methods

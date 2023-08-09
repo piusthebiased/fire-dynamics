@@ -1,8 +1,12 @@
+package vector;
+
+import math.ColumnMatrix;
+
 public class Coordinate {
     private double[] coords;
 
     public Coordinate(int dim) {
-        coords = new double[3];
+        coords = new double[dim];
     }
     public Coordinate(double... coords) {
         this.coords = coords;
@@ -10,18 +14,7 @@ public class Coordinate {
 
     //functional methods
     public Vector vectorRepresentation() {
-        double magnitude = 0.0;
-        for(double d : coords) {
-            magnitude += d*d;
-        }
-        magnitude = Math.sqrt(magnitude);
-
-        double[] direction = new double[coords.length - 1];
-        for(int i = 0; i < direction.length; i++) {
-            direction[i] = Math.atan2(coords[i+1], coords[i]);
-        }
-
-        return new Vector(magnitude, direction);
+        return new Vector(new ColumnMatrix(coords));
     }
 
     public Coordinate add(Coordinate addend) {
